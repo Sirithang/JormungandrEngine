@@ -1,12 +1,14 @@
 #pragma once
 
+#include <map>
+
 namespace jormungandr
 {
-	struct Configuration
-	{
-		bool _fullscreen;
-		unsigned int _height, _width;
-	};
+    struct Configuration
+    {
+        unsigned int _height, _width;
+        bool _fullscreen;
+    };
 
-	const Configuration g_Configuration;
+    extern Configuration g_Configuration;
 }
