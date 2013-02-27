@@ -10,5 +10,5 @@ namespace jormungandr
         bool _fullscreen;
     };
 
-    extern Configuration g_Configuration;
+    extern Configuration config;
 }

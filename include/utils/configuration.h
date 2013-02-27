@@ -4,8 +4,9 @@
 
 namespace jormungandr
 {
-	namespace configuration
-	{
-		void loadFrom(const char* p_File);
-	}
+    namespace configuration
+    {
+        void init(Configuration& p_Config);
+        void loadFrom(const char* p_File);
+    }
 }

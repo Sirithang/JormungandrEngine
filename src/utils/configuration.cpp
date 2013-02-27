@@ -6,13 +6,22 @@
 using namespace jormungandr;
 using namespace jormungandr::configuration;
 
-Configuration jormungandr::g_Configuration;
+Configuration jormungandr::config;
 
 //-----
 
 void handleWindowToken(const char* p_Buffer, jsmntok_t* tokens, int p_Number);
 
 //------
+
+void jormungandr::configuration::init(Configuration& p_Config)
+{
+    config._width = 800;
+    config._height = 600;
+    config._fullscreen = false;
+}
+
+//-------
 
 void jormungandr::configuration::loadFrom(const char* p_File)
 {
@@ -34,16 +43,20 @@ void jormungandr::configuration::loadFrom(const char* p_File)
 
         while(tokens[current].start != -1)
         {
-            if(tokens[current].type == JSMN_OBJECT)
+            if(tokens[current].type == JSMN_STRING && tokens[current+1].type == JSMN_OBJECT)
             {
-                unsigned int size = tokens[current].size;
-
                 if(0 == strncmp("window", buffer + tokens[current].start, tokens[current].end - tokens[current].start))
                 {
-                    handleWindowToken(buffer, tokens + (current + 1), tokens[current].size);
-                }
+                    ++current;
+                    unsigned int size = tokens[current].size;
 
-                current += size;
+                    handleWindowToken(buffer, tokens + (current + 1), tokens[current].size);
+                    current += size;
+                }
+            }
+            else
+            {
+                ++current;
             }
         }
     }
@@ -61,7 +74,7 @@ void handleWindowToken(const char* p_Buffer, jsmntok_t* tokens, int p_Number)
         {
             char val[10];
             strncpy(val, p_Buffer + tokens[i+1].start, tokens[i+1].end - tokens[i+1].start);
-            jormungandr::g_Configuration._width = atoi(val);
+            jormungandr::config._width = atoi(val);
 
             i+=2;
         }
@@ -69,9 +82,22 @@ void handleWindowToken(const char* p_Buffer, jsmntok_t* tokens, int p_Number)
         {
             char val[10];
             strncpy(val, p_Buffer + tokens[i+1].start, tokens[i+1].end - tokens[i+1].start);
-            jormungandr::g_Configuration._height = atoi(val);
+            jormungandr::config._height = atoi(val);
 
             i+=2;
+        }
+        else if(0 == strncmp("fullscreen", p_Buffer + tokens[i].start, tokens[i].end - tokens[i].start))
+        {
+            if(*(p_Buffer + tokens[i+1].start) == 't')
+            {
+                jormungandr::config._fullscreen = true;
+            }
+            else
+            {
+                jormungandr::config._fullscreen = false;
+            }
+
+            i += 2;
         }
     }
 }

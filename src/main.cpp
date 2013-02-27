@@ -12,7 +12,7 @@ int main(int argc, char** argv)
     jormungandr::logger::log("Application launched");
     jormungandr::configuration::loadFrom("data/config/application.json");
 
-    glfwOpenWindow(800, 600, 8, 8, 8, 8, 16, 16, GLFW_WINDOW);
+    glfwOpenWindow(jormungandr::config._width, jormungandr::config._height, 8, 8, 8, 8, 16, 16, jormungandr::config._fullscreen? GLFW_FULLSCREEN : GLFW_WINDOW);
 
     while(running)
     {

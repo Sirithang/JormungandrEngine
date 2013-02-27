@@ -25,6 +25,9 @@
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{5936b841-6605-475e-b4c7-f5c789ff21b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{14375063-776a-4559-ac50-f1b925f3cb27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -58,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="include\utils\utils.h">
       <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\engine.h">
+      <Filter>Header Files\core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

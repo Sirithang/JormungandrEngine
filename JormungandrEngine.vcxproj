@@ -79,6 +79,7 @@
     <ClCompile Include="src\utils\logger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\core\engine.h" />
     <ClInclude Include="include\jsmn\jsmn.h" />
     <ClInclude Include="include\utils\configuration.h" />
     <ClInclude Include="include\utils\configuration_type.h" />
