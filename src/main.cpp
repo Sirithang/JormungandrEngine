@@ -2,6 +2,7 @@
 
 #include "utils/configuration.h"
 #include "utils/logger.h"
+#include "core/component_type.h"
 
 bool running = true;
 
