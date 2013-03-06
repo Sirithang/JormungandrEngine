@@ -5,4 +5,12 @@
 namespace jormungandr
 {
     class Component;
+
+    namespace component
+    {
+        class Renderer;
+        class Animation;
+        class SoundSource;
+        class SoundListener;
+    }
 }
