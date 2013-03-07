@@ -9,6 +9,6 @@ namespace jormungandr
 {
     class Component
     {
-
+		
     };
 }
