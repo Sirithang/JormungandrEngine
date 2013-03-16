@@ -16,9 +16,6 @@
     <Filter Include="Header Files\jsmn">
       <UniqueIdentifier>{2460ae43-4bc6-410b-919e-626e769f367a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\jsmn">
-      <UniqueIdentifier>{8ea7015b-3a2f-4ee3-b3c4-00999038a8ed}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\utils">
       <UniqueIdentifier>{85e0b163-cbdd-43b5-8425-c641ca8049ab}</UniqueIdentifier>
     </Filter>
@@ -34,6 +31,9 @@
     <Filter Include="Source Files\data">
       <UniqueIdentifier>{f2526af5-cabc-4662-ae4d-bae7a46dcbc5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\jsmn">
+      <UniqueIdentifier>{8ea7015b-3a2f-4ee3-b3c4-00999038a8ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -48,7 +48,7 @@
     <ClCompile Include="src\utils\logger.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\data\VBO.cpp">
+    <ClCompile Include="src\data\material.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,16 +83,16 @@
     <ClInclude Include="include\core\component.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="include\data\VBO.h">
-      <Filter>Header Files\data</Filter>
+    <ClInclude Include="include\core\manager_types.h">
+      <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="include\data\sprite.h">
+    <ClInclude Include="include\core\rendermanager.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\data_types.h">
       <Filter>Header Files\data</Filter>
     </ClInclude>
     <ClInclude Include="include\data\material.h">
-      <Filter>Header Files\data</Filter>
-    </ClInclude>
-    <ClInclude Include="include\data\data_types.h">
       <Filter>Header Files\data</Filter>
     </ClInclude>
   </ItemGroup>

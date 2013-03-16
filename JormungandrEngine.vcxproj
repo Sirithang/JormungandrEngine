@@ -75,7 +75,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\data\VBO.cpp" />
+    <ClCompile Include="src\data\material.cpp" />
     <ClCompile Include="src\jsmn\jsmn.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\utils\configuration.cpp" />
@@ -86,10 +86,10 @@
     <ClInclude Include="include\core\component_type.h" />
     <ClInclude Include="include\core\engine.h" />
     <ClInclude Include="include\core\entity_type.h" />
-    <ClInclude Include="include\data\material.h" />
+    <ClInclude Include="include\core\manager_types.h" />
+    <ClInclude Include="include\core\rendermanager.h" />
     <ClInclude Include="include\data\data_types.h" />
-    <ClInclude Include="include\data\sprite.h" />
-    <ClInclude Include="include\data\VBO.h" />
+    <ClInclude Include="include\data\material.h" />
     <ClInclude Include="include\jsmn\jsmn.h" />
     <ClInclude Include="include\utils\configuration.h" />
     <ClInclude Include="include\utils\configuration_type.h" />
