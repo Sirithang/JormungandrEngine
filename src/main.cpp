@@ -4,7 +4,14 @@
 #include "utils/configuration.h"
 #include "utils/logger.h"
 #include "utils/utils.h"
-#include "core/component_type.h"
+
+#include "core/engine.h"
+#include "core/scene.h"
+#include "core/entity.h"
+
+#include "core/component_types.h"
+
+#include "core/message/message.h"
 
 #include "data/material.h"
 
@@ -25,27 +32,22 @@ int main(int argc, char** argv)
 
     glewInit();
 
+	jormungandr::Scene& scn = jormungandr::engine::addScene();
 
-	//******** DEBUG ***********
+	const int nb = 1000;
+	for(int i = 0; i < nb; i++)
+	{
+		uint32_t e = scn.createData();
 
-	GLuint indice;
-	glGenBuffers(1, &indice);
+		uint32_t id = jormungandr::entity::addComponent(e, jormungandr::component::ComponentType::RENDERER);
 
-	glBindBuffer(GL_ARRAY_BUFFER, indice);
-
-	alfar::Vector3 vert[3];
-	vert[0] = alfar::vector3::create(0,0,0);
-	vert[1] = alfar::vector3::create(0,1,0);
-	vert[2] = alfar::vector3::create(1,0,0);
-
-	glBufferData(GL_ARRAY_BUFFER, 3*sizeof(alfar::Vector3), vert, GL_STATIC_DRAW);
-	//glBufferSubData(GL_ARRAY_BUFFER, 0, 3*sizeof(vertex), &vert);
-
-	glEnableVertexAttribArray(0); 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+		jormungandr::component::renderer::setMaterial(scn._renderManager._datas[id], 0);
+	}
 
 
-	//===
+	glDisable(GL_CULL_FACE);
+
+	//=========
 
 	uint32_t mat = jormungandr::data::material::create();
 	jormungandr::data::material::loadShader(mat, "data/vertex.vs");
@@ -54,16 +56,18 @@ int main(int argc, char** argv)
 
 	jormungandr::data::material::bind(mat);
 
-	//jormungandr::data::material::setUniform(1, 
-
-
 	//*****************************************************
 
     while(running)
     {
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
-		glDrawArrays(GL_TRIANGLES, 0, 3*3);
+		for(int i = 0; i < nb; ++i)
+			jormungandr::component::transform::translate(scn._datas[i]._transform, alfar::vector3::create(0.01f, 0, 0));
+
+		jormungandr::engine::update();
+
+		//glDrawArrays(GL_TRIANGLES, 0, 6);
 
         glfwSwapBuffers();
 

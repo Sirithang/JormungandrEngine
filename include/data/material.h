@@ -26,7 +26,7 @@ namespace jormungandr
 			bool compile(uint32_t p_ID);
 			void bind(uint32_t p_ID);
 
-			void setUniform(uint32_t p_Location, const alfar::Matrix4x4& p_Matrix);
+			void setUniform(uint32_t p_ID, const char* p_Name, const alfar::Matrix4x4& p_Matrix);
 		}
 	}
 }

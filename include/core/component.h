@@ -1,14 +1,16 @@
 #pragma once
 
-#include "core/entity_type.h"
+#include "core/component_types.h"
 
 #include <vector>
 #include <stdint.h>
 
 namespace jormungandr
 {
-    class Component
+    struct Component
     {
-		
+		component::ComponentType _type;
+		uint32_t				 _owner;
+		uint32_t				 _id;
     };
 }

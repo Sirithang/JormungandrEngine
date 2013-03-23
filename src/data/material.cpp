@@ -8,7 +8,7 @@ using namespace jormungandr;
 using namespace jormungandr::data;
 
 std::vector<Material> jormungandr::data::g_Materials(64);
-std::list<uint32_t> jormungandr::data::g_FreeID(32);
+std::list<uint32_t> jormungandr::data::g_FreeID;
 int jormungandr::data::g_TopID = 0;
 
 uint32_t g_MaxMat = 64;
@@ -141,7 +141,10 @@ void material::bind(uint32_t p_ID)
 
 //--------------------------------------------
 
-void material::setUniform(uint32_t p_Location, const alfar::Matrix4x4& p_Matrix)
+void material::setUniform(uint32_t p_ID, const char* p_Name, const alfar::Matrix4x4& p_Matrix)
 {
-	glUniform4fv(p_Location, sizeof(alfar::Matrix4x4), &p_Matrix.x.x);
+
+	uint32_t loc = glGetUniformLocation(g_Materials[p_ID]._hardwareID, p_Name);
+
+	glUniformMatrix4fv(loc, 1, GL_FALSE, &p_Matrix.x.x);
 }

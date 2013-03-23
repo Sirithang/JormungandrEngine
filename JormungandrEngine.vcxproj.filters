@@ -34,6 +34,30 @@
     <Filter Include="Source Files\jsmn">
       <UniqueIdentifier>{8ea7015b-3a2f-4ee3-b3c4-00999038a8ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{802ab57d-2abf-49ae-94fc-d76b9795ec13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\component">
+      <UniqueIdentifier>{a1164896-2397-4069-a405-8cc0ef1916bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\message">
+      <UniqueIdentifier>{eca78f1a-6f32-4830-9aee-90d411acd110}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\component">
+      <UniqueIdentifier>{5702882f-a6e5-4376-ac62-1f344c1a2767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\renderer">
+      <UniqueIdentifier>{8749109b-3d4d-45db-84e7-db070fa6ae2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\renderer">
+      <UniqueIdentifier>{c43a01dd-0ec5-476a-98e6-b4a107e87f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\manager">
+      <UniqueIdentifier>{f38dfadc-c412-4553-b32b-b4952af29dda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\manager">
+      <UniqueIdentifier>{3e185ab4-0e13-4372-877d-6734ac3bd5a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -50,6 +74,33 @@
     </ClCompile>
     <ClCompile Include="src\data\material.cpp">
       <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\engine.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\scene.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\entity.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\component\renderer.cpp">
+      <Filter>Source Files\core\component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\component.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\renderer\rendermanager.cpp">
+      <Filter>Source Files\core\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\manager\transformmanager.cpp">
+      <Filter>Source Files\core\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="include\core\manager.h">
+      <Filter>Header Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\component\transform.cpp">
+      <Filter>Source Files\core\component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,19 +125,10 @@
     <ClInclude Include="include\core\engine.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="include\core\component_type.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="include\core\entity_type.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="include\core\component.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="include\core\manager_types.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="include\core\rendermanager.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="include\data\data_types.h">
@@ -94,6 +136,39 @@
     </ClInclude>
     <ClInclude Include="include\data\material.h">
       <Filter>Header Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\engine_types.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\scene.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\message\message_types.h">
+      <Filter>Header Files\core\message</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\entity_types.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\message\message.h">
+      <Filter>Header Files\core\message</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\entity.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\component_types.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\component\renderer.h">
+      <Filter>Header Files\core\component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\renderer\rendermanager.h">
+      <Filter>Header Files\core\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\component\transform.h">
+      <Filter>Header Files\core\component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\manager\transformmanager.h">
+      <Filter>Header Files\core\manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
