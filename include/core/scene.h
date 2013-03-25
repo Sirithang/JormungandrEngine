@@ -2,6 +2,7 @@
 
 #include "renderer/rendermanager.h"
 #include "manager/transformmanager.h"
+#include "manager/scriptmanager.h"
 #include "entity.h"
 
 #include <stdint.h>
@@ -15,6 +16,7 @@ namespace jormungandr
 	public:
 		RenderManager	_renderManager;
 		TransformManager _transformManager;
+		ScriptManager	_scriptManager;
 
 	protected:
 		void onInit();

@@ -1,46 +1,40 @@
 #include "data/material.h"
 #include "utils/utils.h"
 #include "utils/logger.h"
+#include "data/texture.h"
 
 #include <GL/glew.h>
 
 using namespace jormungandr;
 using namespace jormungandr::data;
 
-std::vector<Material> jormungandr::data::g_Materials(64);
-std::list<uint32_t> jormungandr::data::g_FreeID;
-int jormungandr::data::g_TopID = 0;
-
-uint32_t g_MaxMat = 64;
-
 //********************************************************
 
 uint32_t material::create()
 {
-	uint32_t id;
+
+	uint32_t id = AssetLoader<Material>::_instance.create();
 	
-	if(g_FreeID.size() != 0)
-	{
-		id = g_FreeID.back();
-		g_FreeID.pop_back();
-	}
-	else
-	{
-		id = g_TopID;
-		g_TopID++;
+	Material& mat = AssetLoader<Material>::_instance._assets[id];
 
-		if(g_TopID == g_MaxMat)
-		{
-			g_MaxMat += 64;
-			g_Materials.reserve(g_MaxMat);
-		}
-	}
-
-	g_Materials[id]._hardwareID = glCreateProgram();
-
-	glBindAttribLocation(g_Materials[id]._hardwareID, 0, "in_position");
+	material::init(mat);
 
 	return id;
+}
+
+//********************************************************
+
+void material::init(Material& p_Mat)
+{
+	p_Mat._hardwareID = glCreateProgram();
+
+	glBindAttribLocation(p_Mat._hardwareID, 0, "in_position");
+	glBindAttribLocation(p_Mat._hardwareID, 1, "in_uv");
+
+	for(uint8_t i = 0; i < 4; ++i)
+	{
+		p_Mat._samplers[i] = 0;
+	}
 }
 
 //********************************************************
@@ -108,7 +102,7 @@ bool material::loadShader(uint32_t p_ID, const char* p_File)
 		return false;
 	}
 
-	glAttachShader(g_Materials[p_ID]._hardwareID, id);
+	glAttachShader(AssetLoader<Material>::_instance._assets[p_ID]._hardwareID, id);
 
 	return true;
 
@@ -119,14 +113,24 @@ bool material::loadShader(uint32_t p_ID, const char* p_File)
 
 bool material::compile(uint32_t p_ID)
 {
-	glLinkProgram(g_Materials[p_ID]._hardwareID);
+	Material& mat = AssetLoader<Material>::_instance._assets[p_ID];
+
+	glLinkProgram(mat._hardwareID);
 
 	int iLinkStatus;
-	glGetProgramiv(g_Materials[p_ID]._hardwareID, GL_LINK_STATUS, &iLinkStatus);
+	glGetProgramiv(mat._hardwareID, GL_LINK_STATUS, &iLinkStatus);
 	if(!iLinkStatus == GL_TRUE)
 	{
 		jormungandr::logger::error("Linking of program failed");
 		return false;
+	}
+
+
+	const char* names[] = {"_sampler0", "_sampler1", "_sampler2", "_sampler3"};
+	for(int i = 0; i < 4; ++i)
+	{
+		uint32_t loc = glGetUniformLocation(mat._hardwareID, names[i]);
+		glUniform1i(loc, i);
 	}
 
 	return true;
@@ -136,7 +140,16 @@ bool material::compile(uint32_t p_ID)
 
 void material::bind(uint32_t p_ID)
 {
-	glUseProgram(g_Materials[p_ID]._hardwareID);
+	Material& mat = AssetLoader<Material>::_instance._assets[p_ID];
+	glUseProgram(mat._hardwareID);
+
+	const char* names[] = {"_sampler0", "_sampler1", "_sampler2", "_sampler3"};
+
+	for(int i = 0; i < 4; ++i)
+	{
+		glActiveTexture(GL_TEXTURE0 + i);
+		glBindTexture(GL_TEXTURE_2D, mat._samplers[i]);
+	}
 }
 
 //--------------------------------------------
@@ -144,7 +157,16 @@ void material::bind(uint32_t p_ID)
 void material::setUniform(uint32_t p_ID, const char* p_Name, const alfar::Matrix4x4& p_Matrix)
 {
 
-	uint32_t loc = glGetUniformLocation(g_Materials[p_ID]._hardwareID, p_Name);
+	uint32_t loc = glGetUniformLocation(AssetLoader<Material>::_instance._assets[p_ID]._hardwareID, p_Name);
 
 	glUniformMatrix4fv(loc, 1, GL_FALSE, &p_Matrix.x.x);
+}
+
+//===============================================
+
+void material::addSampler(uint32_t p_ID, Texture* p_Sampler, uint8_t p_Number)
+{
+	Material& mat = AssetLoader<Material>::_instance._assets[p_ID];
+
+	mat._samplers[p_Number] = p_Sampler->_hardwareID;
 }

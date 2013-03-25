@@ -12,7 +12,8 @@ namespace jormungandr
 	class TransformManager : public Manager<component::Transform>
 	{
 	public:
-		std::set<uint32_t> _toSync;
+		std::vector<uint32_t> _toSync;
+		uint32_t _nbToSync;
 
 	protected:
 		void onInit();
@@ -23,7 +24,12 @@ namespace jormungandr
 	{
 		inline void toSync(TransformManager& p_Manager, uint32_t p_Transform)
 		{
-			p_Manager._toSync.insert(p_Transform);
+			if(p_Manager._toSync.size() >= p_Manager._toSync.capacity())
+			{
+				p_Manager._toSync.reserve(p_Manager._toSync.size() + 512);
+			}
+
+			p_Manager._toSync.push_back(p_Transform);
 		}
 
 		void sync(TransformManager& p_Manager);

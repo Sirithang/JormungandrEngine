@@ -9,14 +9,26 @@ namespace jormungandr
 	{
 		struct Transform : public Component
 		{
-			alfar::Vector3 _position;
+			//definition of shortcut usefull for sync.
+			uint32_t _renderer;
 
+			uint32_t _parent;
+
+			uint32_t _hierarchyDepth;//all parent id combined. used for ordering.
+
+			alfar::Vector3 _position;
 			alfar::Matrix4x4 _matrix;
 		};
+
+		inline bool operator<(const Transform& p_A, const Transform& p_B)
+		{
+			return p_A._hierarchyDepth < p_B._hierarchyDepth;
+		}
 
 		namespace transform
 		{
 			void translate(uint32_t p_ID, alfar::Vector3 p_Delta);
+			void setPosition(uint32_t p_ID, alfar::Vector3 p_Pos);
 		}
 	}
 

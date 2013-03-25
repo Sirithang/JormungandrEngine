@@ -53,10 +53,10 @@ void logger::error(const char* p_Message, const Logger* p_Logger)
 {
 	if(nullptr == p_Logger)
 	{
-		defaultLogger()->log(p_Message);
+		defaultLogger()->error(p_Message);
 	}
 	else
 	{
-		p_Logger->log(p_Message);
+		p_Logger->error(p_Message);
 	}
 }

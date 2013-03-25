@@ -2,6 +2,7 @@
 
 namespace jormungandr
 {
-	struct RenderManager;
-	struct TransformManager;
+	class RenderManager;
+	class TransformManager;
+	class ScriptManager;
 }

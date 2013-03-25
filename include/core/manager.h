@@ -29,6 +29,7 @@ namespace jormungandr
 	template<class T>
 	void Manager<T>::init()
 	{
+		_datas.clear();
 		_datas.reserve(1024);
 		_freeID.clear();
 		_maxID = 0;

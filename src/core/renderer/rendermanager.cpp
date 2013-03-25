@@ -73,13 +73,14 @@ void rendermanager::render( RenderManager& p_Manager)
 	
 	GLuint vbo;
 	glGenBuffers(1, &vbo);
-
+	
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, 1000 * sizeof(component::renderer::Vertex), NULL, GL_DYNAMIC_DRAW);
 
 	glEnableVertexAttribArray(0); 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(component::renderer::Vertex), 0);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(component::renderer::Vertex),(void*)12);
 
 	for(uint32_t i = 0; i < size; ++i)
 	{
@@ -96,7 +97,7 @@ void rendermanager::render( RenderManager& p_Manager)
 			lastMat = matId;
 			jormungandr::data::material::bind(lastMat);
 
-			alfar::Matrix4x4 matrice = alfar::mat4x4::ortho(jormungandr::config._width, 0, 0, jormungandr::config._height, 0.01, 100);
+			alfar::Matrix4x4 matrice = alfar::mat4x4::ortho((float)jormungandr::config._width, 0, 0, (float)jormungandr::config._height, 0.01f, 100);
 
 			jormungandr::data::material::setUniform(lastMat, "mvp", matrice);
 
@@ -120,5 +121,7 @@ void rendermanager::render( RenderManager& p_Manager)
 	drawBuffer(nbVertex, buffer);
 
 	glDeleteBuffers(1, &vbo);
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
 	p_Manager._commands.clear();
 }

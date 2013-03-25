@@ -3,5 +3,5 @@
 namespace jormungandr
 {
 	struct Engine;
-	struct Scene;
+	class Scene;
 }

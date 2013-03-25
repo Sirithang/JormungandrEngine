@@ -1,10 +1,13 @@
 #include "core/entity.h"
 
 #include "core/component/renderer.h"
+#include "core/component/script.h"
 
-#include "core/renderer/rendermanager.h"
 #include "core/engine.h"
 #include "core/scene.h"
+
+#include "core/renderer/rendermanager.h"
+#include "core/manager/scriptmanager.h"
 
 using namespace jormungandr;
 
@@ -28,19 +31,25 @@ uint32_t entity::addComponent(uint32_t p_Entity, component::ComponentType p_Type
 {
 	uint32_t id = -1;
 
+	Entity& e = jormungandr::g_engine->_current->_datas[p_Entity];
+
 	switch(p_Type)
 	{
 	case component::ComponentType::RENDERER:
-		id = jormungandr::g_engine->_current->_renderManager.createData();
-		jormungandr::g_engine->_current->_renderManager._datas[id]._owner = p_Entity;
+		id = jormungandr::g_engine->_currentRenderManager->createData();
+		jormungandr::g_engine->_currentRenderManager->_datas.at(id)._owner = p_Entity;
+		jormungandr::g_engine->_currentTransformManager->_datas.at(e._transform)._renderer = id;
 		break;
+	case component::ComponentType::SCRIPT:
+		id = jormungandr::g_engine->_currentScriptManager->createData();
+		jormungandr::g_engine->_currentScriptManager->_datas.at(id)._owner = p_Entity;
 	default:
 		break;
 	}
 
 	if(id >= 0)
 	{
-		jormungandr::g_engine->_current->_datas[p_Entity]._components.insert(std::pair<component::ComponentType, uint32_t>(p_Type, id));
+		e._components.insert(std::pair<component::ComponentType, uint32_t>(p_Type, id));
 	}
 
 	return id;

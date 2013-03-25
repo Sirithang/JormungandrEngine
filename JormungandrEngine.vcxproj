@@ -49,13 +49,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../AlfarMath/include;./include;./ext;./ext/GLFW/include;./ext/glew/include;./ext/foundation/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./ext/lua/include;./ext/libpng/include;../AlfarMath/include;./include;./ext;./ext/GLFW/include;./ext/glew/include;./ext/foundation/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLEW_STATIC;_MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../AlfarMath/bin;./ext/GLFW/lib;./ext/glew/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;opengl32.lib;glu32.lib;GLFW.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);glew32s.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./ext/lua/lib;./ext/libpng/lib;../AlfarMath/bin;./ext/GLFW/lib;./ext/glew/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua5.1.lib;libpng16.lib;zlib.lib;glew32s.lib;opengl32.lib;glu32.lib;GLFW.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);glew32s.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -64,50 +64,62 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../AlfarMath/include;./include;./ext;./ext/GLFW/include;./ext/glew/include;./ext/foundation/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./ext/lua/include;./ext/libpng/include;../AlfarMath/include;./include;./ext;./ext/GLFW/include;./ext/glew/include;./ext/foundation/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLEW_STATIC;_MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>../AlfarMath/bin</AdditionalLibraryDirectories>
-      <AdditionalDependencies>AlfarMathd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);glew32s.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./ext/lua/lib;./ext/libpng/lib;../AlfarMath/bin;./ext/GLFW/lib;./ext/glew/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua5.1.lib;libpng16.lib;zlib.lib;glew32s.lib;opengl32.lib;glu32.lib;GLFW.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);glew32s.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="include\core\manager.h" />
     <ClCompile Include="src\core\component.cpp" />
     <ClCompile Include="src\core\component\renderer.cpp" />
+    <ClCompile Include="src\core\component\script.cpp" />
     <ClCompile Include="src\core\component\transform.cpp" />
     <ClCompile Include="src\core\engine.cpp" />
     <ClCompile Include="src\core\entity.cpp" />
+    <ClCompile Include="src\core\manager\scriptmanager.cpp" />
     <ClCompile Include="src\core\manager\transformmanager.cpp" />
     <ClCompile Include="src\core\renderer\rendermanager.cpp" />
     <ClCompile Include="src\core\scene.cpp" />
+    <ClCompile Include="src\data\assetdatabase.cpp" />
     <ClCompile Include="src\data\material.cpp" />
+    <ClCompile Include="src\data\texture.cpp" />
     <ClCompile Include="src\jsmn\jsmn.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\script\scriptinterface.cpp" />
     <ClCompile Include="src\utils\configuration.cpp" />
     <ClCompile Include="src\utils\logger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\core\component.h" />
     <ClInclude Include="include\core\component\renderer.h" />
+    <ClInclude Include="include\core\component\script.h" />
     <ClInclude Include="include\core\component\transform.h" />
     <ClInclude Include="include\core\component_types.h" />
     <ClInclude Include="include\core\engine.h" />
     <ClInclude Include="include\core\engine_types.h" />
     <ClInclude Include="include\core\entity_types.h" />
     <ClInclude Include="include\core\entity.h" />
+    <ClInclude Include="include\core\manager\scriptmanager.h" />
     <ClInclude Include="include\core\manager\transformmanager.h" />
     <ClInclude Include="include\core\message\message.h" />
     <ClInclude Include="include\core\message\message_types.h" />
     <ClInclude Include="include\core\manager_types.h" />
     <ClInclude Include="include\core\renderer\rendermanager.h" />
     <ClInclude Include="include\core\scene.h" />
+    <ClInclude Include="include\data\asset.h" />
+    <ClInclude Include="include\data\assetdatabase.h" />
     <ClInclude Include="include\data\data_types.h" />
     <ClInclude Include="include\data\material.h" />
+    <ClInclude Include="include\data\texture.h" />
     <ClInclude Include="include\jsmn\jsmn.h" />
+    <ClInclude Include="include\script\scriptinterface.h" />
     <ClInclude Include="include\utils\configuration.h" />
     <ClInclude Include="include\utils\configuration_type.h" />
     <ClInclude Include="include\utils\logger.h" />

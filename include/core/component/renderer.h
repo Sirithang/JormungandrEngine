@@ -12,8 +12,8 @@ namespace jormungandr
 			struct Vertex
 			{
 				alfar::Vector3 _position;
-				/*alfar::Vector2 _uv;
-				alfar::Vector3 _color;*/
+				alfar::Vector2 _uv;
+				alfar::Vector3 _color;
 			};
 		}
 

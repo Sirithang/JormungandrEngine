@@ -10,7 +10,7 @@ Configuration jormungandr::config;
 
 //-----
 
-void handleWindowToken(const char* p_Buffer, jsmntok_t* tokens, int p_Number);
+void handleWindowToken(const char* p_Buffer, jsmntok_t* tokens, unsigned int p_Number);
 
 //------
 
@@ -64,7 +64,7 @@ void jormungandr::configuration::loadFrom(const char* p_File)
 
 //*****************************************************
 
-void handleWindowToken(const char* p_Buffer, jsmntok_t* tokens, int p_Number)
+void handleWindowToken(const char* p_Buffer, jsmntok_t* tokens, unsigned int p_Number)
 {
     unsigned int i = 0;
     while(i < p_Number)

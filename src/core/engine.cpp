@@ -13,6 +13,10 @@ Scene& engine::addScene()
 
 	g_engine->_current->init();
 
+	g_engine->_currentRenderManager = &g_engine->_current->_renderManager;
+	g_engine->_currentTransformManager = &g_engine->_current->_transformManager;
+	g_engine->_currentScriptManager = &g_engine->_current->_scriptManager;
+
 	return g_engine->_scenes.back();
 }
 

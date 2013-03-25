@@ -18,15 +18,29 @@ void manager::init(Transform& p_Transform, uint32_t p_ID)
 
 	p_Transform._type = component::ComponentType::TRANSFORM;
 	p_Transform._id = p_ID;
+
+	p_Transform._renderer = -1;
+	
+	p_Transform._parent = 0;
+	p_Transform._hierarchyDepth = 0;
 }
 
 //========================================================
 
 void transform::translate(uint32_t p_ID, alfar::Vector3 p_Delta)
 {
-	Transform& trans = jormungandr::g_engine->_current->_transformManager._datas[p_ID];
+	Transform& trans = jormungandr::g_engine->_currentTransformManager->_datas[p_ID];
 
 	trans._position = alfar::vector3::add(trans._position, p_Delta);
 
-	jormungandr::transformmanager::toSync(jormungandr::g_engine->_current->_transformManager, p_ID);
+	//jormungandr::transformmanager::toSync(jormungandr::g_engine->_current->_transformManager, p_ID);
+}
+
+//========================================================
+
+void transform::setPosition(uint32_t p_ID, alfar::Vector3 p_Pos)
+{
+	Transform& tr = jormungandr::g_engine->_currentTransformManager->_datas[p_ID];
+
+	tr._position = p_Pos;
 }

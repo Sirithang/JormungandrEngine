@@ -12,14 +12,14 @@ namespace jormungandr
 		{
 			TRANSFORM,
 			RENDERER,
-			ANIMATION,
+			SCRIPT,
 			SOUNDSOURCE,
 			SOUNDLISTENER
 		};
 
 		struct Transform;
         struct Renderer;
-        struct Animation;
+        struct Script;
         struct SoundSource;
         struct SoundListener;
     }

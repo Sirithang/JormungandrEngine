@@ -58,6 +58,12 @@
     <Filter Include="Source Files\core\manager">
       <UniqueIdentifier>{3e185ab4-0e13-4372-877d-6734ac3bd5a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\script">
+      <UniqueIdentifier>{13d7eb3c-897a-4ba7-a36a-273f15b9faf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\script">
+      <UniqueIdentifier>{466cb0e5-2c77-4a10-8716-228bb63aa294}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -102,6 +108,21 @@
     <ClCompile Include="src\core\component\transform.cpp">
       <Filter>Source Files\core\component</Filter>
     </ClCompile>
+    <ClCompile Include="src\data\assetdatabase.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="src\data\texture.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\component\script.cpp">
+      <Filter>Source Files\core\component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\manager\scriptmanager.cpp">
+      <Filter>Source Files\core\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\script\scriptinterface.cpp">
+      <Filter>Source Files\script</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\jsmn\jsmn.h">
@@ -130,9 +151,6 @@
     </ClInclude>
     <ClInclude Include="include\core\manager_types.h">
       <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="include\data\data_types.h">
-      <Filter>Header Files\data</Filter>
     </ClInclude>
     <ClInclude Include="include\data\material.h">
       <Filter>Header Files\data</Filter>
@@ -169,6 +187,27 @@
     </ClInclude>
     <ClInclude Include="include\core\manager\transformmanager.h">
       <Filter>Header Files\core\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\asset.h">
+      <Filter>Header Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\assetdatabase.h">
+      <Filter>Header Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\texture.h">
+      <Filter>Header Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\component\script.h">
+      <Filter>Header Files\core\component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\manager\scriptmanager.h">
+      <Filter>Header Files\core\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\data_types.h">
+      <Filter>Header Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\script\scriptinterface.h">
+      <Filter>Header Files\script</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

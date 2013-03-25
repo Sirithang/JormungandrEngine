@@ -14,5 +14,6 @@
 
 bin/
 Debug/
+Release/
 ./data/
 *.user

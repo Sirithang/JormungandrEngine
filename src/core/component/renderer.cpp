@@ -9,7 +9,6 @@ using namespace jormungandr::component;
 
 void manager::init(Renderer& p_Renderer, uint32_t p_ID)
 {
-	p_Renderer._id = 0;
 	p_Renderer._matID = 0;
 	p_Renderer._type = ComponentType::RENDERER;
 
@@ -19,12 +18,14 @@ void manager::init(Renderer& p_Renderer, uint32_t p_ID)
 
 	const float defaultX[] = {0, 32, 0, 32, 32, 0};
 	const float defaultY[] = {0, 0, 32, 0, 32, 32};
+	const float defaultU[] = {0, 1, 0, 1, 1, 0};
+	const float defaultV[] = {0, 0, 1, 0, 1, 1};
 
 	for(uint8_t i = 0; i < 6; ++i)
 	{
 		p_Renderer._vertex[i]._position = alfar::vector3::create(defaultX[i], defaultY[i],1);
-		/*p_Renderer._vertex[i]._color = alfar::vector3::create(0,0,0);
-		p_Renderer._vertex[i]._uv = alfar::vector2::create(0,0);*/
+		p_Renderer._vertex[i]._uv = alfar::vector2::create(defaultU[i],defaultV[i]);
+		p_Renderer._vertex[i]._color = alfar::vector3::create(-1,-1,-1);
 	}
 }
 
